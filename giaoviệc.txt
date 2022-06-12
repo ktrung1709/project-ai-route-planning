@@ -1,0 +1,3 @@
+Phương Quang: sửa file excel thành json, sửa thuật toán đúng format trong report
+Hoàng Văn Phương: Sửa bản đồ, thêm cái phần có đáp số thì in đường đỏ trên bản đồ. input là array các thành phố
+Bùi Văn Thành: Tách file import data ra 1 file riêng, lấy output là dictionary
