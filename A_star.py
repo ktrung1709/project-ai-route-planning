@@ -1,6 +1,6 @@
 import preprocessing as pp
 
-real_distance_filename = "C:\\Users\\DELL\\OneDrive - Hanoi University of Science and Technology\Desktop\\Study\\20212\\Intro to AI\\Project\\Kc_ke.xlsx"
+real_distance_filename = "C:\\Users\\DELL\\OneDrive - Hanoi University of Science and Technology\Desktop\\Study\\20212\\Intro to AI\\Project\\Kc_ke.json"
 heuristics_distance_filename = 'C:\\Users\\DELL\\OneDrive - Hanoi University of Science and Technology\\Desktop\\Study\\20212\\Intro to AI\\Project\\crow_flies.json'
 
 def printData(city_map):
@@ -46,7 +46,6 @@ def A_star_algorithm(start_city, end_city, real_distance, h):
                     candidates.append(city)
                     time = time + 1
         #find cur_city
-
         visited.append(cur_city)
         candidates.remove(cur_city)
         route.pop(cur_city)
@@ -72,7 +71,7 @@ def A_star_algorithm(start_city, end_city, real_distance, h):
 
 def main():
     # Real distance between two cities
-    city_map = pp.read_from_excel_file(real_distance_filename)
+    city_map = pp.read_from_json_file(real_distance_filename)
     # Heuristic distance between two cities
     heuristics_distance = pp.read_from_json_file(heuristics_distance_filename)
     start_city = input('Start city: ')
