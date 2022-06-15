@@ -10,10 +10,10 @@ def printData(city_map):
             print(key + " : " + dest_city[key])
 
 def A_star_algorithm(start_city, end_city, real_distance, h):
-    if(start_city not in h.items()):
+    if(start_city not in h.keys()):
         print('Can not find the start city. Please select a start city again.')
         return
-    elif(end_city not in h.items()):
+    elif(end_city not in h.keys()):
         print('Can not find the end city. Please select an end city again.')
         return
     if(start_city == end_city):
