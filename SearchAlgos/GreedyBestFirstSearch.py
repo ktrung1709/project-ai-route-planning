@@ -1,6 +1,7 @@
+import sys
+sys.path.append('C:\\Users\\Trung\\OneDrive - Hanoi University of Science and Technology\\Documents\\A.I\\Project\\Project-AI\\Preprocessing')
 
-from preprocessing import city_map
-from preprocessing import heuristics_distance
+from preprocessing import heuristics_distance, city_map
 
 from pqdict import pqdict
 
@@ -18,7 +19,6 @@ def GBFS(start_city, end_city, city_map, h):
  
     total_distance = 0
     best_route =[start_city]
-    visited = [start_city]
     cur_city = start_city
     time_space = 1
 
@@ -28,7 +28,6 @@ def GBFS(start_city, end_city, city_map, h):
             f.additem(neighbor_city, heuristics_distance[neighbor_city][end_city])
             time_space += 1
         next_city = f.pop()
-        visited.append(next_city)
         best_route.append(next_city)
         total_distance += city_map[cur_city][next_city]
 

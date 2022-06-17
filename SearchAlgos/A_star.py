@@ -1,5 +1,8 @@
-from preprocessing import city_map
-from preprocessing import heuristics_distance
+import sys
+sys.path.append('C:\\Users\\Trung\\OneDrive - Hanoi University of Science and Technology\\Documents\\A.I\\Project\\Project-AI\\Preprocessing')
+
+from preprocessing import heuristics_distance, city_map
+
 
 def printData(city_map):
     for start_city, dest_city in city_map.items():
