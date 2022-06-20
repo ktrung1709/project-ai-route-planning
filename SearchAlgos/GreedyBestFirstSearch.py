@@ -1,4 +1,5 @@
 from pqdict import pqdict
+from sqlalchemy import null
 
 def GBFS(start_city, end_city, city_map, heuristics_distance):
     if(start_city not in heuristics_distance.keys()):
@@ -13,26 +14,26 @@ def GBFS(start_city, end_city, city_map, heuristics_distance):
         return
  
     total_distance = 0
-    best_route =[start_city]
     cur_city = start_city
     time_space = 1
-    
+    visited = [start_city]
 
     while cur_city != end_city:
+        f = pqdict({})
         for neighbor_city in city_map[cur_city].keys():
-            f = pqdict({})
-            f.additem(neighbor_city, heuristics_distance[neighbor_city][end_city])
-            time_space += 1
+            if neighbor_city not in visited:
+                f.additem(neighbor_city, heuristics_distance[neighbor_city][end_city])
+                time_space += 1
         next_city = f.pop()
-        best_route.append(next_city)
-        total_distance += city_map[cur_city][next_city]
-
-        cur_city = next_city
+        if next_city == null:
+            print("The algorithm can not return a solution!")
+            return
+        else:
+            visited.append(next_city)
+            total_distance += city_map[cur_city][next_city]
+            cur_city = next_city
     
     print(f"Time complexity: {time_space}")
     print(f"Space complexity: {time_space}")
     print(f'Total distance: {total_distance}')
-    print(f'Best route: {best_route}') 
-
-     
-    
+    print(f'Path found: {visited}')   

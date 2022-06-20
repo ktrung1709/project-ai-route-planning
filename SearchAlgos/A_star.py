@@ -52,4 +52,4 @@ def A_star_algorithm(start_city, end_city, real_distance, h):
     print(f"Time complexity: {time}")
     print(f"Space complexity: {space}")
     print(f'Total distance: {min_cost_value}')
-    print(f'Best route: {best_route}')   
+    print(f'Path found: {best_route}')   

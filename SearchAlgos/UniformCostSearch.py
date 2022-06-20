@@ -9,6 +9,10 @@ def UCS(start_city, end_city, city_map):
     if end_city not in city_map:
         raise TypeError(str(end_city) + ' not found in graph !')
         return
+    if(start_city == end_city):
+        print('Total distance: 0')
+        print('Best route: ')
+        return
 
     queue = Q.PriorityQueue()
     queue.put((0, [start_city]))
