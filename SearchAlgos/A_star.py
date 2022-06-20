@@ -39,10 +39,12 @@ def A_star_algorithm(start_city, end_city, real_distance, h):
         for city in real_distance[cur_city].keys():
             # Check unvisited cities
             if city not in visited:
-                real_cost[city] = real_cost[cur_city] + real_distance[cur_city][city]
-                f[city] = real_cost[city] + h[city][end_city]
-                route[city] = route[cur_city].copy()
-                route[city].append(city)
+                temp_real_cost = real_cost[cur_city] + real_distance[cur_city][city]
+                if city not in f.keys() or f[city] > temp_real_cost + h[city][end_city]: 
+                    real_cost[city] = temp_real_cost
+                    f[city] = real_cost[city] + h[city][end_city]
+                    route[city] = route[cur_city].copy()
+                    route[city].append(city)
                 if city not in candidates:
                     candidates.append(city)
                     time = time + 1
