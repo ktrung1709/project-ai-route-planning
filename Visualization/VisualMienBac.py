@@ -36,7 +36,7 @@ G.visualize() """
 
 import csv
 
-with open('C:\\Users\\Trung\\OneDrive - Hanoi University of Science and Technology\\Documents\\A.I\\Project-AI\\Visualization\\north_cities.csv') as csv_file:
+with open('C:\\Users\\Trung\\OneDrive - Hanoi University of Science and Technology\\Documents\\A.I\\Project-AI\\Visualization\\city_coordinate.csv') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     csv_reader = list(csv_reader)
     line_count = 0
@@ -49,7 +49,7 @@ for i in range(1,len(csv_reader)):
     location = csv_reader[i][1]
     pos[location] = (float(csv_reader[i][2]), float(csv_reader[i][3]))
 #print(pos)
-with open('C:\\Users\\Trung\\OneDrive - Hanoi University of Science and Technology\\Documents\\A.I\\Project-AI\\Visualization\\Kc_ke.csv') as csv_file:
+with open('C:\\Users\\Trung\\OneDrive - Hanoi University of Science and Technology\\Documents\\A.I\\Project-AI\\Visualization\\neighbor.csv') as csv_file:
     kcke_reader = csv.reader(csv_file, delimiter=',')
     kcke_reader = list(kcke_reader)
     line_count = 0
