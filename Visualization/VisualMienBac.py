@@ -40,11 +40,7 @@ for edge in khoang_cach:
     for i in pos.keys():
         #generate colors
         if i in DuongDi and DuongDi.index(i) < len(DuongDi) - 1:
-            #G.add_edge(DuongDi[DuongDi.index(i)],DuongDi[DuongDi.index(i) + 1], color = 'r')
-            for j in DuongDi:
-                if j == i:
-                    G.add_edge(DuongDi[DuongDi.index(j)], DuongDi[DuongDi.index(j) + 1], color = 'r')
-                    G.add_edge(DuongDi[5], DuongDi[6], color = 'r')
+            G.add_edge(DuongDi[DuongDi.index(i)],DuongDi[DuongDi.index(i) + 1], color = 'r')
         else:
             G.add_edge(edge[0], edge[1], color = 'black', weight = edge[2])
 
