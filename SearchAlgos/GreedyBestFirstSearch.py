@@ -16,10 +16,11 @@ def GBFS(start_city, end_city, city_map, heuristics_distance):
     best_route =[start_city]
     cur_city = start_city
     time_space = 1
+    
 
     while cur_city != end_city:
-        f = pqdict({})
         for neighbor_city in city_map[cur_city].keys():
+            f = pqdict({})
             f.additem(neighbor_city, heuristics_distance[neighbor_city][end_city])
             time_space += 1
         next_city = f.pop()

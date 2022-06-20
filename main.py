@@ -1,6 +1,6 @@
 import sys
-sys.path.append('C:\\Users\\Trung\\OneDrive - Hanoi University of Science and Technology\\Documents\\A.I\\Project\\Project-AI\\Preprocessing')
-sys.path.append('C:\\Users\\Trung\\OneDrive - Hanoi University of Science and Technology\\Documents\\A.I\\Project\\Project-AI\\SearchAlgos')
+sys.path.append('C:\\Users\\Trung\\OneDrive - Hanoi University of Science and Technology\\Documents\\A.I\\Project-AI\\Preprocessing')
+sys.path.append('C:\\Users\\Trung\\OneDrive - Hanoi University of Science and Technology\\Documents\\A.I\\Project-AI\\SearchAlgos')
 
 
 from preprocessing import heuristics_distance, city_map
