@@ -3,7 +3,7 @@ from turtle import color
 import matplotlib.pyplot as plt
 import networkx as nx
 
-DuongDi = ['HaNoi', 'BacNinh', 'HaiDuong', 'HungYen', 'HaNam', 'HaNoi', 'HungYen']
+DuongDi = ['HaNoi', 'BacNinh', 'HaiDuong', 'HungYen', 'HaNam']
 import csv
 with open('C:/Users/LENOVO/Desktop/ProjectAI/Data/north_cities.csv') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter = ',')
