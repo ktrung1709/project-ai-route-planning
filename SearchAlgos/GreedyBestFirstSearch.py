@@ -1,15 +1,10 @@
-import sys
-sys.path.append('C:\\Users\\Trung\\OneDrive - Hanoi University of Science and Technology\\Documents\\A.I\\Project\\Project-AI\\Preprocessing')
-
-from preprocessing import heuristics_distance, city_map
-
 from pqdict import pqdict
 
-def GBFS(start_city, end_city, city_map, h):
-    if(start_city not in h.keys()):
+def GBFS(start_city, end_city, city_map, heuristics_distance):
+    if(start_city not in heuristics_distance.keys()):
         print('Can not find the start city. Please select a start city again.')
         return
-    elif(end_city not in h.keys()):
+    elif(end_city not in heuristics_distance.keys()):
         print('Can not find the end city. Please select an end city again.')
         return
     if(start_city == end_city):
@@ -36,18 +31,7 @@ def GBFS(start_city, end_city, city_map, h):
     print(f"Time complexity: {time_space}")
     print(f"Space complexity: {time_space}")
     print(f'Total distance: {total_distance}')
-    print(f'Best route: {best_route}')  
+    print(f'Best route: {best_route}') 
+
+     
     
-        
-
-def main():
-    
-    start_city = input('Start city: ')
-    end_city = input('End city: ') 
-
-    start_city = ' '.join(start_city.split()).title()
-    end_city = ' '.join(end_city.split()).title()
-    GBFS(start_city, end_city,city_map, heuristics_distance)
-
-if __name__ == '__main__':
-    main()

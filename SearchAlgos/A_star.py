@@ -1,15 +1,3 @@
-import sys
-sys.path.append('C:\\Users\\Trung\\OneDrive - Hanoi University of Science and Technology\\Documents\\A.I\\Project\\Project-AI\\Preprocessing')
-
-from preprocessing import heuristics_distance, city_map
-
-
-def printData(city_map):
-    for start_city, dest_city in city_map.items():
-        print("Start city: ", start_city)
-        for key in dest_city:
-            print(key + " : " + dest_city[key])
-
 def A_star_algorithm(start_city, end_city, real_distance, h):
     if(start_city not in h.keys()):
         print('Can not find the start city. Please select a start city again.')
@@ -33,7 +21,6 @@ def A_star_algorithm(start_city, end_city, real_distance, h):
     f[cur_city] = h[cur_city][end_city] + real_cost[cur_city]
     time = 1
     space = len(route.items())
-    k = 1
     # find the best route and the min_distance
     while f[end_city] != min_cost_value:
         for city in real_distance[cur_city].keys():
@@ -61,26 +48,8 @@ def A_star_algorithm(start_city, end_city, real_distance, h):
                 cur_city = city
                 min_cost_value = f[city]
         best_route = route[cur_city].copy()
-        print(f"Iteration {k}:")
-        print(f'time: {time}')
-        print(f"space: {space}")
-        k = k + 1
         
     print(f"Time complexity: {time}")
     print(f"Space complexity: {space}")
     print(f'Total distance: {min_cost_value}')
-    print(f'Best route: {best_route}')  
-    
-
-
-def main():
-    
-    start_city = input('Start city: ')
-    end_city = input('End city: ') 
-
-    start_city = ' '.join(start_city.split()).title()
-    end_city = ' '.join(end_city.split()).title()
-    A_star_algorithm(start_city, end_city,city_map,heuristics_distance)
-
-if __name__ == '__main__':
-    main()
+    print(f'Best route: {best_route}')   
