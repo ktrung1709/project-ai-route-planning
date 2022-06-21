@@ -1,14 +1,14 @@
 from matplotlib import transforms
 import csv
-from operator import index
-from turtle import color
 import matplotlib.pyplot as plt
 import networkx as nx
 import os
 import sys
 
+city_coordinate_file_path = os.path.join(sys.path[0], "city_coordinate.csv")
+neighbor_file_path = os.path.join(sys.path[0], "neighbor.csv")
 DuongDi = ['HaNoi', 'BacNinh', 'HaiDuong', 'HungYen', 'HaNam']
-with open(os.path.join(sys.path[0], "city_coordinate.csv"), "r") as csv_file:
+with open(city_coordinate_file_path, "r") as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     csv_reader = list(csv_reader)
     line_count = 0
@@ -19,7 +19,7 @@ pos = {}
 for i in range(1, len(csv_reader)):
     location = csv_reader[i][1]
     pos[location] = (float(csv_reader[i][3]), float(csv_reader[i][2]))
-with open(os.path.join(sys.path[0], "neighbor.csv"), "r") as csv_file:
+with open(neighbor_file_path, "r") as csv_file:
     kcke_reader = csv.reader(csv_file, delimiter=',')
     kcke_reader = list(kcke_reader)
     line_count = 0
