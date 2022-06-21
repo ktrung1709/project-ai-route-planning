@@ -45,15 +45,15 @@ def printMap(DuongDi):
         for i in pos.keys():
             # generate colors
             if i in DuongDi and DuongDi.index(i) < len(DuongDi) - 1:
-                G.add_edge(DuongDi[DuongDi.index(i)],
-                        DuongDi[DuongDi.index(i) + 1], color='r')
+                G.add_edge(DuongDi[DuongDi.index(i)], DuongDi[DuongDi.index(i) + 1], color='r',weight = 5)
             else:
-                G.add_edge(edge[0], edge[1], color='black', weight=edge[2])
+                G.add_edge(edge[0], edge[1], color='black', weight = 1)
 
 
     # apply colors
     colors = nx.get_edge_attributes(G, 'color').values()
+    weights = nx.get_edge_attributes(G, 'weight').values()
     # draw
     plt.figure(3, figsize=(10, 10))
-    nx.draw(G, pos=pos, edge_color=colors, with_labels=True)
+    nx.draw(G, pos=pos, edge_color=colors, width = list(weights), with_labels=True)
     plt.show()
