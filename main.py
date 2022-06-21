@@ -1,15 +1,16 @@
 import sys
-sys.path.append('C:\\Users\\Trung\\OneDrive - Hanoi University of Science and Technology\\Documents\\A.I\\Project-AI\\Preprocessing')
-sys.path.append('C:\\Users\\Trung\\OneDrive - Hanoi University of Science and Technology\\Documents\\A.I\\Project-AI\\SearchAlgos')
+sys.path.append(str(sys.path[0]) + '\\Preprocessing')
+sys.path.append(str(sys.path[0]) + '\\SearchAlgos')
 
-from UniformCostSearch import UCS
-from GreedyBestFirstSearch import GBFS
-from A_star import A_star_algorithm
 from preprocessing import heuristics_distance, city_map
+from A_star import A_star_algorithm
+from GreedyBestFirstSearch import GBFS
+from UniformCostSearch import UCS
 
-def main():   
+
+def main():
     start_city = input('Start city: ')
-    end_city = input('End city: ') 
+    end_city = input('End city: ')
 
     start_city = ' '.join(start_city.split()).title()
     end_city = ' '.join(end_city.split()).title()
@@ -21,11 +22,12 @@ def main():
     if choice == 1:
         UCS(start_city, end_city, city_map)
     elif choice == 2:
-        GBFS(start_city, end_city,city_map, heuristics_distance)
+        GBFS(start_city, end_city, city_map, heuristics_distance)
     elif choice == 3:
         A_star_algorithm(start_city, end_city, city_map, heuristics_distance)
     else:
         print("Invalid Choice")
+
 
 if __name__ == '__main__':
     main()
