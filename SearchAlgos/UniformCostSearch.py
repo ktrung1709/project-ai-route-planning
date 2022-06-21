@@ -1,4 +1,8 @@
 import queue as Q
+import sys
+sys.path.append(str(sys.path[0]) + '\\Visualization')
+
+from VisualMienBac import printMap
 
 def UCS(start_city, end_city, city_map):
     time_complexity = 0
@@ -27,6 +31,14 @@ def UCS(start_city, end_city, city_map):
             print("Cost = " + str(node[0]))
             print("Time complexity: " + str(time_complexity) + " nodes")
             print("Space complexity: " + str(space_complexity) + " nodes")
+
+            result = []
+            for item in node[1]:
+                item_delete_space = item.replace(" ","")
+                result.append(item_delete_space)
+
+            printMap(result)
+            # print(type(node[0]))
             break
 
         cost = node[0]

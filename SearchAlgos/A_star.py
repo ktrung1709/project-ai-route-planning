@@ -1,3 +1,7 @@
+import sys
+sys.path.append(str(sys.path[0]) + '\\Visualization')
+
+from VisualMienBac import printMap
 def A_star_algorithm(start_city, end_city, real_distance, h):
     if(start_city not in h.keys()):
         print('Can not find the start city. Please select a start city again.')
@@ -53,3 +57,9 @@ def A_star_algorithm(start_city, end_city, real_distance, h):
     print(f"Space complexity: {space}")
     print(f'Total distance: {min_cost_value}')
     print(f'Path found: {best_route}')   
+    result = []
+    for item in best_route:
+        item_delete_space = item.replace(" ","")
+        result.append(item_delete_space)
+
+    printMap(result)

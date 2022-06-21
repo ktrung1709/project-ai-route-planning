@@ -1,4 +1,7 @@
 import heapdict
+import sys
+sys.path.append(str(sys.path[0]) + '\\Visualization')
+from VisualMienBac import printMap
 
 def GBFS(start_city, end_city, city_map, heuristics_distance):
     if(start_city not in heuristics_distance.keys()):
@@ -44,4 +47,10 @@ def GBFS(start_city, end_city, city_map, heuristics_distance):
     print(f"Time complexity: {time_space}")
     print(f"Space complexity: {time_space}")
     print(f'Total distance: {total_distance}')
-    print(f'Path found: {visited}')   
+    print(f'Path found: {visited}')  
+    result = []
+    for item in visited:
+        item_delete_space = item.replace(" ","")
+        result.append(item_delete_space)
+
+    printMap(result)
