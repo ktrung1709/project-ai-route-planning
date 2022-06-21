@@ -5,7 +5,7 @@ import networkx as nx
 
 DuongDi = ['HaNoi', 'BacNinh', 'HaiDuong', 'HungYen', 'HaNam']
 import csv
-with open('C:/Users/LENOVO/Desktop/ProjectAI/Data/north_cities.csv') as csv_file:
+with open('C:\\Users\\Trung\\OneDrive - Hanoi University of Science and Technology\\Documents\\A.I\\Project-AI\\Visualization\\city_coordinate.csv') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter = ',')
     csv_reader = list(csv_reader)
     line_count = 0
@@ -16,7 +16,7 @@ pos = {}
 for i in range(1,len(csv_reader)):
     location = csv_reader[i][1]
     pos[location] = (float(csv_reader[i][3]), float(csv_reader[i][2]))
-with open('C:/Users/LENOVO/Desktop/ProjectAI/Data/Kc_ke.csv') as csv_file:
+with open('C:\\Users\\Trung\\OneDrive - Hanoi University of Science and Technology\\Documents\\A.I\\Project-AI\\Visualization\\neighbor.csv') as csv_file:
     kcke_reader = csv.reader(csv_file, delimiter = ',')
     kcke_reader = list(kcke_reader)
     line_count = 0
@@ -52,4 +52,3 @@ from matplotlib import transforms
 plt.figure(3,figsize=(10,10)) 
 nx.draw(G, pos = pos, edge_color = colors, with_labels = True)
 plt.show()  
-# print(pos.keys())
