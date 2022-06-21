@@ -1,10 +1,8 @@
-# from matplotlib import transforms
 import csv
 import matplotlib.pyplot as plt
 import networkx as nx
 import os
 import sys
-
 
 city_coordinate_file_path = os.path.join(sys.path[0] + "\\Visualization", "city_coordinate.csv")
 neighbor_file_path = os.path.join(sys.path[0] + "\\Visualization", "neighbor.csv")
