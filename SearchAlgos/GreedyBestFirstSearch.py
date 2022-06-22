@@ -54,14 +54,7 @@ def GBFS(start_city, end_city, city_map, heuristics_distance):
 
 
 def trace_back(visited: dict, end_city, city_map):
-    """
-    Trả về path đi từ đầu đến end_city
-    Mặc định điểm đầu là điểm mà parent city là None
-    :param visited:
-    :param end_city:
-    :param city_map:
-    :return:
-    """
+
     path = []
     total_distance = 0
     cur_city = end_city
