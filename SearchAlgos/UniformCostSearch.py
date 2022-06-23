@@ -21,7 +21,7 @@ def UCS(start_city, end_city, city_map):
     queue = Q.PriorityQueue()
     # Initial queue
     queue.put((0, [start_city]))
-
+ 
     while not queue.empty():
 
         # Get path with smallest cost
@@ -29,6 +29,7 @@ def UCS(start_city, end_city, city_map):
         time_complexity = time_complexity + 1
         # Get last city in path 
         current = node[1][len(node[1]) - 1]
+        cost = node[0]
 
         if end_city in node[1]:
             print("Path found: " + str(node[1]))
@@ -45,7 +46,6 @@ def UCS(start_city, end_city, city_map):
             break
 
         # Get smallest cost
-        cost = node[0]
 
         for neighbor in city_map[current]:
 
