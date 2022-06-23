@@ -56,10 +56,6 @@ def A_star_algorithm(start_city, end_city, real_distance, h):
     print(f"Time complexity: {time}")
     print(f"Space complexity: {space}")
     print(f'Total distance: {min_cost_value}')
-    print(f'Path found: {best_route}')   
-    result = []
-    for item in best_route:
-        item_delete_space = item.replace(" ","")
-        result.append(item_delete_space)
+    print(f'Path found: {best_route}')  
 
-    printMap(result)
+    printMap(best_route)

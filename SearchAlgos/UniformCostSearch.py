@@ -28,29 +28,24 @@ def UCS(start_city, end_city, city_map):
         node = queue.get()
         time_complexity = time_complexity + 1
         # Get last city in path 
-        current = node[1][len(node[1]) - 1]
+        current_city = node[1][len(node[1]) - 1]
         cost = node[0]
 
         if end_city in node[1]:
+            print("Time complexity: " + str(time_complexity))
+            print("Space complexity: " + str(space_complexity))
+            print("Total distance = " + str(node[0]))
             print("Path found: " + str(node[1]))
-            print("Cost = " + str(node[0]))
-            print("Time complexity: " + str(time_complexity) + " nodes")
-            print("Space complexity: " + str(space_complexity) + " nodes")
 
-            result = []
-            for item in node[1]:
-                item_delete_space = item.replace(" ","")
-                result.append(item_delete_space)
-
-            printMap(result)
+            printMap(node[1])
             break
 
         # Get smallest cost
 
-        for neighbor in city_map[current]:
+        for neighbor in city_map[current_city]:
 
             temp = node[1][:]
             temp.append(neighbor)
             if len(temp) > space_complexity:
                 space_complexity = len(temp)
-            queue.put((cost + city_map[current][neighbor], temp))
+            queue.put((cost + city_map[current_city][neighbor], temp))

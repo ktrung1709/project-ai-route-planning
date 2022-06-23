@@ -45,12 +45,7 @@ def GBFS(start_city, end_city, city_map, heuristics_distance):
     print(f'Total distance: {total_distance}')
     print(f'Shortest path: {shortest_path}')
 
-    result = []
-    for item in shortest_path:
-        item_delete_space = item.replace(" ","")
-        result.append(item_delete_space)
-
-    printMap(result)
+    printMap(shortest_path)
 
 
 def trace_back(visited: dict, end_city, city_map):
