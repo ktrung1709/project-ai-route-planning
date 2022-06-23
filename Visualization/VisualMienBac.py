@@ -36,8 +36,7 @@ def printMap(DuongDi_format):
     for i in range(1, len(kcke_reader)):
         if kcke_reader[i] == ['', '.', '']:
             continue
-        khoang_cach.append(
-            list((kcke_reader[i][0], kcke_reader[i][1], kcke_reader[i][2])))
+        khoang_cach.append(list((kcke_reader[i][0], kcke_reader[i][1], kcke_reader[i][2])))
 
     G = nx.Graph()
 
@@ -45,15 +44,12 @@ def printMap(DuongDi_format):
     for key in list(pos.keys()):
         G.add_node(key, pos=pos[key])
 
-    # generate edges
+    # generate edges and colors
     for edge in khoang_cach:
-        for i in pos.keys():
-            # generate colors
-            if i in DuongDi and DuongDi.index(i) < len(DuongDi) - 1:
-                G.add_edge(DuongDi[DuongDi.index(i)], DuongDi[DuongDi.index(i) + 1], color='r',weight = 5)
-            else:
-                G.add_edge(edge[0], edge[1], color='black', weight = 1)
-
+        G.add_edge(edge[0], edge[1], color = 'black', weight = 1 )
+    length = len(DuongDi)
+    for i in range(length - 1):
+        G.add_edge(DuongDi[i], DuongDi[i + 1], color = 'r', weight = 5)
 
     # apply colors
     colors = nx.get_edge_attributes(G, 'color').values()
