@@ -2,11 +2,11 @@ import sys
 sys.path.append(str(sys.path[0]) + '\\Visualization')
 from VisualMienBac import printMap
 
-def A_star_algorithm(start_city, end_city, real_distance, h):
-    if(start_city not in h.keys()):
+def A_star_algorithm(start_city, end_city, city_map, heuristics_distance):
+    if(start_city not in heuristics_distance.keys()):
         print('Can not find the start city. Please select a start city again.')
         return
-    elif(end_city not in h.keys()):
+    elif(end_city not in heuristics_distance.keys()):
         print('Can not find the end city. Please select an end city again.')
         return
     if(start_city == end_city):
@@ -15,47 +15,61 @@ def A_star_algorithm(start_city, end_city, real_distance, h):
         return
     # initialize values 
     min_cost_value = 1e9    
-    f ={end_city:1e9+1}
-    best_route =[]
-    candidates = [start_city]
     visited = [start_city]
+    optimal_node = [start_city]
     cur_city = start_city
-    route = {cur_city :[cur_city]}
-    real_cost = {cur_city : 0}
-    f[cur_city] = h[cur_city][end_city] + real_cost[cur_city]
-    time = 1
-    space = len(route.items())
+    cur_cost = {cur_city : 0}
+    route = {cur_city : None}
+    f ={end_city:1e9+1}
+    f[cur_city] = heuristics_distance[cur_city][end_city] + cur_cost[cur_city]
+    time_space = 1
+
     # find the best route and the min_distance
     while f[end_city] != min_cost_value:
-        for city in real_distance[cur_city].keys():
-            # Check unvisited cities
-            if city not in visited:
-                temp_real_cost = real_cost[cur_city] + real_distance[cur_city][city]
-                if city not in f.keys() or f[city] > temp_real_cost + h[city][end_city]: 
-                    real_cost[city] = temp_real_cost
-                    f[city] = real_cost[city] + h[city][end_city]
-                    route[city] = route[cur_city].copy()
-                    route[city].append(city)
-                if city not in candidates:
-                    candidates.append(city)
-                    time = time + 1
-        #find cur_city
-
-        visited.append(cur_city)
-        candidates.remove(cur_city)
-        route.pop(cur_city)
-        space = len(route.items())
+        for neighbor_city in city_map[cur_city].keys():
+            # Check unvisited cities for optimal_node
+            if neighbor_city not in optimal_node:
+                temp_cur_cost = cur_cost[cur_city] + city_map[cur_city][neighbor_city]
+                if neighbor_city not in f.keys() or f[neighbor_city] > temp_cur_cost + heuristics_distance[neighbor_city][end_city]: 
+                    cur_cost[neighbor_city] = temp_cur_cost
+                    f[neighbor_city] = cur_cost[neighbor_city] + heuristics_distance[neighbor_city][end_city]
+                    route[neighbor_city] = cur_city
+                if neighbor_city not in visited:
+                    visited.append(neighbor_city)
+                time_space = time_space + 1
+        #Insert the optimal node
+        optimal_node.append(cur_city)
+        visited.remove(cur_city)
+        # Update cur_city
         cur_city = list(f.items())[0][0]
         min_cost_value = list(f.items())[0][1]
-        for city in candidates:
-            if f[city] < min_cost_value:
-                cur_city = city
-                min_cost_value = f[city]
-        best_route = route[cur_city].copy()
-        
-    print(f"Time complexity: {time}")
-    print(f"Space complexity: {space}")
-    print(f'Total distance: {min_cost_value}')
-    print(f'Path found: {best_route}')  
+        for neighbor_city in visited:
+            if f[neighbor_city] < min_cost_value:
+                cur_city = neighbor_city
+                min_cost_value = f[neighbor_city]
 
-    printMap(best_route)
+    shortest_path, total_distance = trace_back(route, end_city, city_map)
+    print(f"Time complexity: {time_space}")
+    print(f"Space complexity: {time_space}")
+    print(f'Total distance: {total_distance}')
+    print(f'Path found: {shortest_path}')  
+
+    printMap(shortest_path)
+
+def trace_back(visited: dict, end_city, city_map):
+
+    path = []
+    total_distance = 0
+    cur_city = end_city
+    cur_city_parent = visited[end_city]
+    while 1:
+        if cur_city_parent is not None:
+            path.append(cur_city)
+            total_distance += city_map[cur_city_parent][cur_city]
+            cur_city = visited[cur_city]
+            cur_city_parent = visited[cur_city]
+        else:
+            path.append(cur_city)
+            break
+    path.reverse()
+    return path, total_distance 

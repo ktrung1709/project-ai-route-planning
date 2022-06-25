@@ -1,4 +1,3 @@
-from unittest import result
 import heapdict
 import sys
 sys.path.append(str(sys.path[0]) + '\\Visualization')
@@ -39,9 +38,10 @@ def GBFS(start_city, end_city, city_map, heuristics_distance):
 
         cur_city = next_city
 
+    shortest_path, total_distance = trace_back(visited, end_city, city_map)
+
     print(f"Time complexity: {time_space}")
     print(f"Space complexity: {time_space}")
-    shortest_path, total_distance = trace_back(visited, end_city, city_map)
     print(f'Total distance: {total_distance}')
     print(f'Shortest path: {shortest_path}')
 
@@ -65,5 +65,3 @@ def trace_back(visited: dict, end_city, city_map):
             break
     path.reverse()
     return path, total_distance 
-
-    
