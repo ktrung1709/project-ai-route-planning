@@ -42,40 +42,21 @@ def printMap(path_format):
     for i in range(1, len(neighbor_reader)):
         if neighbor_reader[i] == ['', '.', '']:
             continue
-<<<<<<< HEAD
-        distance.append(
-            list((neighbor_reader[i][0], neighbor_reader[i][1], neighbor_reader[i][2])))
-    
-=======
-        khoang_cach.append(list((kcke_reader[i][0], kcke_reader[i][1], kcke_reader[i][2])))
+        distance.append(list((neighbor_reader[i][0], neighbor_reader[i][1], neighbor_reader[i][2])))
 
->>>>>>> 4e0c2e98fb91af5b05c27052846bb7f18310e90f
     G = nx.Graph()
     
     # generate city nodes
     for key in list(pos.keys()):
         G.add_node(key, pos=pos[key])
-<<<<<<< HEAD
-    
-    # generate edges
-    for edge in distance:
-        for i in pos.keys():
-            # generate colors
-            if i in path and path.index(i) < len(path) - 1:
-                G.add_edge(path[path.index(i)], path[path.index(i) + 1], color='r',weight = 5)
-            else:
-                G.add_edge(edge[0], edge[1], color='black', weight = 1)
-    
-=======
 
     # generate edges and colors
-    for edge in khoang_cach:
+    for edge in distance:
         G.add_edge(edge[0], edge[1], color = 'black', weight = 1 )
-    length = len(DuongDi)
+    length = len(path)
     for i in range(length - 1):
-        G.add_edge(DuongDi[i], DuongDi[i + 1], color = 'r', weight = 5)
+        G.add_edge(path[i], path[i + 1], color = 'r', weight = 5)
 
->>>>>>> 4e0c2e98fb91af5b05c27052846bb7f18310e90f
     # apply colors
     colors = nx.get_edge_attributes(G, 'color').values()
     weights = nx.get_edge_attributes(G, 'weight').values()
