@@ -48,13 +48,8 @@ def UCS(start_city, end_city, city_map):
         visited.append(last_city)
         cur_city = last_city
 
-    result = []
-    for item in cities_list:
-        item_delete_space = item.replace(" ","")
-        result.append(item_delete_space)
-
     print("Time complexity: " + str(time_space))
     print("Space complexity: " + str(time_space))
     print("Path found: " + str(cities_list))
     print("Cost = " + str(cost))
-    printMap(result)
+    printMap(cities_list)
