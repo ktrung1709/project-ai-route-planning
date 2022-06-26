@@ -5,8 +5,7 @@ Hoàng Văn Phương 20200478
 Bùi Văn Thành 20200585
 
 
-Please install the following libraries using pip
-HeapDict , matplotlib, networkx
+Please install the following libraries using pip install HeapDict , matplotlib, networkx
 
 Run program at main.py 
 
