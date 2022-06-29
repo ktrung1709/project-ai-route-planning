@@ -20,23 +20,26 @@ def A_star_algorithm(start_city, end_city, city_map, heuristics_distance):
     cur_city = start_city
     cur_cost = {cur_city : 0}
     route = {cur_city : None}
+    remove_nodes = []
     f ={end_city:1e9+1}
     f[cur_city] = heuristics_distance[cur_city][end_city] + cur_cost[cur_city]
-    time_space = 1
+    time = 1
 
     # find the best route and the min_distance
     while f[end_city] != min_cost_value:
         for neighbor_city in city_map[cur_city].keys():
-            # Check unvisited cities for optimal_node
-            if neighbor_city not in optimal_node:
+            # Check unvisited cities for optimal_node            if neighbor_city not in optimal_node:
                 temp_cur_cost = cur_cost[cur_city] + city_map[cur_city][neighbor_city]
-                if neighbor_city not in f.keys() or f[neighbor_city] > temp_cur_cost + heuristics_distance[neighbor_city][end_city]: 
+                if neighbor_city not in f.keys() or f[neighbor_city] > temp_cur_cost + heuristics_distance[neighbor_city][end_city]:
+                    if neighbor_city in route.keys():
+                        remove_nodes.append((neighbor_city, route[neighbor_city]))
                     cur_cost[neighbor_city] = temp_cur_cost
                     f[neighbor_city] = cur_cost[neighbor_city] + heuristics_distance[neighbor_city][end_city]
                     route[neighbor_city] = cur_city
-                if neighbor_city not in visited:
+                    
+                if neighbor_city not in optimal_node:
                     visited.append(neighbor_city)
-                time_space = time_space + 1
+                time = time + 1
         #Insert the optimal node
         optimal_node.append(cur_city)
         visited.remove(cur_city)
@@ -47,10 +50,10 @@ def A_star_algorithm(start_city, end_city, city_map, heuristics_distance):
             if f[neighbor_city] < min_cost_value:
                 cur_city = neighbor_city
                 min_cost_value = f[neighbor_city]
-
+    space = len(route) + len(remove_nodes)
     shortest_path, total_distance = trace_back(route, end_city, city_map)
-    print(f"Time complexity: {time_space}")
-    print(f"Space complexity: {time_space}")
+    print(f"Time complexity: {time}")
+    print(f"Space complexity: {space}")
     print(f'Total distance: {total_distance}')
     print(f'Path found: {shortest_path}')  
 
