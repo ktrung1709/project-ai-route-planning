@@ -24,12 +24,12 @@ def A_star_algorithm(start_city, end_city, city_map, heuristics_distance):
     cur_city = start_city
     f[cur_city] = heuristics_distance[cur_city][end_city] + cur_cost[cur_city]
     time = 1
-
     # find the best route and the min_distance
     while f[end_city] != min_cost_value:
         for neighbor_city in city_map[cur_city].keys():
             # Check unvisited cities for optimal_node            
-            # if neighbor_city not in optimal_node:
+            if neighbor_city not in optimal_node:
+                time += 1
                 temp_cur_cost = cur_cost[cur_city] + city_map[cur_city][neighbor_city]
                 if neighbor_city not in f.keys() or f[neighbor_city] > temp_cur_cost + heuristics_distance[neighbor_city][end_city]:
                     if neighbor_city in route.keys():
@@ -37,10 +37,11 @@ def A_star_algorithm(start_city, end_city, city_map, heuristics_distance):
                     cur_cost[neighbor_city] = temp_cur_cost
                     f[neighbor_city] = cur_cost[neighbor_city] + heuristics_distance[neighbor_city][end_city]
                     route[neighbor_city] = cur_city
-                    
-                if neighbor_city not in optimal_node:
+                else:
+                    remove_nodes.append((neighbor_city, route[neighbor_city])) 
+                if neighbor_city not in visited:
                     visited.append(neighbor_city)
-                time = time + 1
+                
         #Insert the optimal node
         optimal_node.append(cur_city)
         visited.remove(cur_city)
