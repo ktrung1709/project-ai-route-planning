@@ -7,7 +7,6 @@ from A_star import A_star_algorithm
 from GreedyBestFirstSearch import GBFS
 from UniformCostSearch import UCS
 
-
 def main():
     start_city = input('Start city: ')
     end_city = input('End city: ')
