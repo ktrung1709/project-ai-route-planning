@@ -1,6 +1,5 @@
 import sys
 
-from numpy import append
 sys.path.append(str(sys.path[0]) + '\\Visualization')
 from VisualMienBac import printMap
 
@@ -33,7 +32,7 @@ def A_star_algorithm(start_city, end_city, city_map, heuristics_distance):
             # Check unvisited cities for optimal_node            
             if neighbor_city not in optimal_node:
                 temp_cur_cost = cur_cost[cur_city] + city_map[cur_city][neighbor_city]
-                if neighbor_city not in route.keys() or f[neighbor_city] > temp_cur_cost + heuristics_distance[neighbor_city][end_city]:
+                if neighbor_city not in f.keys() or f[neighbor_city] > temp_cur_cost + heuristics_distance[neighbor_city][end_city]:
                     if neighbor_city in route.keys():
                         remove_nodes.append((neighbor_city, route[neighbor_city]))
                     cur_cost[neighbor_city] = temp_cur_cost
