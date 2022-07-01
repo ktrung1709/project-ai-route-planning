@@ -33,11 +33,11 @@ def UCS(start_city, end_city, city_map):
         #Generate unvisited neighbor cities
         for neighbor in city_map[cur_city]:
             if neighbor not in visited:
+                time += 1
                 temp = cities_list[:]
                 temp.append(neighbor)
-                time += 1
-                space += 1
                 queue.put((cost + city_map[cur_city][neighbor], temp))
+                space += 1
         # Pop the top priority item out of the PriorityQueue
         node = queue.get()
         space -= 1
